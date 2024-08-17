@@ -37,11 +37,14 @@ public class EmployeeService {
 	}
 
 	public Employee getSingleEmployeeData(int eid) {
+		logger.info("we are in getSingleEmployeeData method of service class");
 		return employeeRepository.findById(eid)
 				.orElseThrow(() -> new ResourceNotFoundException(message + eid));
 	}
 
 	public Employee updateEmployeeObject(int eid, Employee employeeDetails) {
+
+		logger.info("we are in updateEmployeeObject method of service class");
 		Employee employee = employeeRepository.findById(eid)
 				.orElseThrow(() -> new ResourceNotFoundException(message + eid));
 		employee.setEname(employeeDetails.getEname());
@@ -55,6 +58,8 @@ public class EmployeeService {
 	}
 
 	public Integer deleteEmployeeObject(int eid) {
+
+		logger.info("we are in deleteEmployeeObject method of service class");
 
 		Employee employee = employeeRepository.findById(eid)
 				.orElseThrow(() -> new ResourceNotFoundException(message + eid));
