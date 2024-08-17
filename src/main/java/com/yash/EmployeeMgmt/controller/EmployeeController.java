@@ -55,7 +55,7 @@ public class EmployeeController {
 	@GetMapping(value = "/getEmployeeData/{eid}")
 	public ResponseEntity<Employee> getSingleEmployeeData(@PathVariable int eid) {
 		 Employee singleEmployeeData = employeeService.getSingleEmployeeData(eid);
-		logger.info("data fetched successfully ");
+		logger.info("data fetched successfully with given id ");
 		 return ResponseEntity.ok(singleEmployeeData);
 		}
 
