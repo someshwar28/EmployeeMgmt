@@ -14,6 +14,8 @@ public class EmployeeService {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
+
+	Logger logger= LoggerFactory.getLogger(EmployeeService.class);
 	
 	String message="Employee is not exist with this id ";
 
