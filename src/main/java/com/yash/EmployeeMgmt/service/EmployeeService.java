@@ -20,6 +20,8 @@ public class EmployeeService {
 	String message="Employee is not exist with this id ";
 
 	public Employee saveEmployeeObject(Employee employee) {
+
+		logger.info("we are in service class saveEmployeeObject method");
 		return employeeRepository.save(employee);
 
 	}
