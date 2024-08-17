@@ -28,8 +28,12 @@ public class EmployeeService {
 
 	}
 
+<<<<<<< HEAD
 	public List<Employee> getAllEmployeeObject() {
 		logger.info("we are in getAllEmployeeObject method of service class");
+=======
+	public List<Employee> getAllEmployeeObject() {
+>>>>>>> refs/remotes/origin/feature-simulation
 		return employeeRepository.findAll();
 
 	}
