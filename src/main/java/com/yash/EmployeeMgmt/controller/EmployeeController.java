@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,35 +28,41 @@ import com.yash.EmployeeMgmt.service.EmployeeService;
 @RestController
 @RequestMapping(value = "/employee")
 public class EmployeeController {
-	
+
 	@Autowired
 	EmployeeService employeeService;
-	
+
+	Logger logger= LoggerFactory.getLogger(EmployeeController.class);
+
 	@PostMapping(value = "/addEmployeeData")
 	public ResponseEntity<Employee> addEmployeeObject(@Valid @RequestBody Employee employee) {
 		Employee saveEmployeeObject = employeeService.saveEmployeeObject(employee);
-		System.out.println("object created successfully ");
+
+		logger.info("object created successfully ");
+
 		return new ResponseEntity<>(saveEmployeeObject,HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping(value = "/getAllEmployeeData")
 	public ResponseEntity<List<Employee>> getAllEmployeeData(){
 		List<Employee> allEmployeeObject = employeeService.getAllEmployeeObject();
-		System.out.println("data fetched successfully ");
+
+		logger.info("data fetched successfully ");
+
 		return new ResponseEntity<>(allEmployeeObject,HttpStatus.ACCEPTED);
 	}
-	
+
 	@GetMapping(value = "/getEmployeeData/{eid}")
 	public ResponseEntity<Employee> getSingleEmployeeData(@PathVariable int eid) {
 		 Employee singleEmployeeData = employeeService.getSingleEmployeeData(eid);
-		 System.out.println("data fetched successfully ");
+		logger.info("data fetched successfully ");
 		 return ResponseEntity.ok(singleEmployeeData);
 		}
-	
+
 	@PutMapping(value = "/updateEmployeeData/{eid}")
 	public ResponseEntity<Employee> updateEmployeeData(@PathVariable int eid,@RequestBody Employee employee){
 		Employee updateEmployeeObject = employeeService.updateEmployeeObject(eid, employee);
-		System.out.println("data updated successfully ");
+		logger.info("data updated successfully ");
 		return new ResponseEntity<>(updateEmployeeObject,HttpStatus.CREATED);
 		}
 	@DeleteMapping(value = "/deleteEmployeeData/{eid}")
@@ -62,7 +70,7 @@ public class EmployeeController {
 		Integer eid2 = employeeService.deleteEmployeeObject(eid);
 		Map<String,Integer>map=new HashMap<>();
 		map.put("deleted id is", eid2);
-		System.out.println("data deleted successfully ");
+		logger.info("data deleted successfully ");
 		return new ResponseEntity<>(map,HttpStatus.ACCEPTED);
 	}
 	
