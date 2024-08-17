@@ -28,7 +28,8 @@ public class EmployeeService {
 
 	}
 
-	public List<Employee> getAllEmployeeObject() {    
+	public List<Employee> getAllEmployeeObject() { 
+		System.out.println("we are in getAllEmployeeObject"); 
 		return employeeRepository.findAll();
 
 	}
